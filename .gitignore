@@ -1,0 +1,26 @@
+# Python / Environment
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Model artifacts
+distilbert-finetuned/
+*.bin
+*.pt
+*.safetensors
+
+# Generated data
+data/index/
+data/embeddings/
+data/chunks/
+data/processed/
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/

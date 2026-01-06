@@ -1,0 +1,174 @@
+{
+  "data": [
+    {
+      "title": "EXT API Sonar Setup",
+      "paragraphs": [
+        {
+          "context": "ext api sonar setup go to sonar url login sonar url using below details and other details are given below click on create project click project > manually ( give project name, click setup, after setting up token will be shown in screen go to sonar shell script in the workspace open the sh file and replace below things has to be replaced, example given below mvn org. sonarsource. scanner. maven : sonar - maven - plugin : 3. 9. 1. 2184 : sonar \\ - dsonar. projectkey = psd. japac. csc. fo. ext. api. 25. 1 \\ - dsonar. host. url = http : / / 100. 76. 172. 28 : 19030 \\ ( sonar url ) - dsonar. ojaudit. enabled = false \\ - dsonar. login = sqp _ 6c5e04a2bf67ba703ff9e81f8a8f3402a39851f1 \\ ( this token will bw generated after setting up project ) - dmaven. test. skip = true \\ - dmaven. repo. local = / scratch / build / m2 / repository / orm _ maven _ repo _ v1 / repository \\ - o run sh file in putty build should be successful check sonar dashboard for respective project the date should be updated for code coverage to download the report, click on more at the top bar 10. click on cnes report > select the project > all other options will be as it is, only check and enable xlsx report click on generate zip file should be downloaded.",
+          "qas": [
+            {
+              "id": "extapi_sonar_q1",
+              "question": "How do you start setting up the EXT API Sonar project?",
+              "answers": [
+                {
+                  "text": "go to sonar url",
+                  "answer_start": 22
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q2",
+              "question": "After opening the Sonar URL, what should you do to create the project?",
+              "answers": [
+                {
+                  "text": "click on create project click project > manually ( give project name, click setup, after setting up token will be shown in screen",
+                  "answer_start": 106
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q3",
+              "question": "Where will the token be shown during Sonar project setup?",
+              "answers": [
+                {
+                  "text": "after setting up token will be shown in screen",
+                  "answer_start": 189
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q4",
+              "question": "After creating the project, where should you go to edit the Sonar shell script?",
+              "answers": [
+                {
+                  "text": "go to sonar shell script in the workspace",
+                  "answer_start": 233
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q5",
+              "question": "Which Maven command is used to run the Sonar analysis?",
+              "answers": [
+                {
+                  "text": "mvn org. sonarsource. scanner. maven : sonar - maven - plugin : 3. 9. 1. 2184 : sonar",
+                  "answer_start": 334
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q6",
+              "question": "What is the Sonar project key used in the example?",
+              "answers": [
+                {
+                  "text": "psd. japac. csc. fo. ext. api. 25. 1",
+                  "answer_start": 429
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q7",
+              "question": "Which property specifies the Sonar host URL in the command?",
+              "answers": [
+                {
+                  "text": "- dsonar. host. url = http : / / 100. 76. 172. 28 : 19030 \\ ( sonar url )",
+                  "answer_start": 472
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q8",
+              "question": "Which property disables ojaudit in the Sonar configuration?",
+              "answers": [
+                {
+                  "text": "- dsonar. ojaudit. enabled = false \\",
+                  "answer_start": 540
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q9",
+              "question": "What value should be used for sonar.login in the shell script?",
+              "answers": [
+                {
+                  "text": "sqp _ 6c5e04a2bf67ba703ff9e81f8a8f3402a39851f1 \\ ( this token will bw generated after setting up project )",
+                  "answer_start": 579
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q10",
+              "question": "Which property is used to skip tests during the Maven build?",
+              "answers": [
+                {
+                  "text": "- dmaven. test. skip = true \\",
+                  "answer_start": 681
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q11",
+              "question": "Which property sets the local Maven repository path in the example?",
+              "answers": [
+                {
+                  "text": "- dmaven. repo. local = / scratch / build / m2 / repository / orm _ maven _ repo _ v1 / repository \\",
+                  "answer_start": 715
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q12",
+              "question": "After configuring the shell script, how should you run it?",
+              "answers": [
+                {
+                  "text": "run sh file in putty",
+                  "answer_start": 802
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q13",
+              "question": "What should you check on the Sonar dashboard after running the build?",
+              "answers": [
+                {
+                  "text": "check sonar dashboard for respective project the date should be updated for code coverage",
+                  "answer_start": 828
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q14",
+              "question": "How do you start downloading the Sonar report from the UI?",
+              "answers": [
+                {
+                  "text": "to download the report, click on more at the top bar",
+                  "answer_start": 909
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q15",
+              "question": "Which report type should be enabled to get the XLSX file?",
+              "answers": [
+                {
+                  "text": "click on cnes report > select the project > all other options will be as it is, only check and enable xlsx report",
+                  "answer_start": 961
+                }
+              ]
+            },
+            {
+              "id": "extapi_sonar_q16",
+              "question": "What happens after you click on Generate in the CNES report screen?",
+              "answers": [
+                {
+                  "text": "click on generate zip file should be downloaded.",
+                  "answer_start": 1048
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

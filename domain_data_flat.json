@@ -1,0 +1,759 @@
+[
+  {
+    "id": "extapi_sonar_q1",
+    "question": "How do you start setting up the EXT API Sonar project?",
+    "context": "ext api sonar setup go to sonar url login sonar url using below details and other details are given below click on create project click project > manually ( give project name, click setup, after setting up token will be shown in screen go to sonar shell script in the workspace open the sh file and replace below things has to be replaced, example given below mvn org. sonarsource. scanner. maven : sonar - maven - plugin : 3. 9. 1. 2184 : sonar \\ - dsonar. projectkey = psd. japac. csc. fo. ext. api. 25. 1 \\ - dsonar. host. url = http://100.76.172.28:19030 ( sonar url ) - dsonar. ojaudit. enabled = false \\ - dsonar. login = sqp_6c5e04a2bf67ba703ff9e81f8a8f3402a39851f1 ( this token will be generated after setting up project ) - dmaven. test. skip = true \\ - dmaven. repo. local = /scratch/build/m2/repository/orm_maven_repo_v1/repository \\ - o run sh file in putty build should be successful check sonar dashboard for respective project the date should be updated for code coverage to download the report, click on more at the top bar click on cnes report > select the project > all other options will be as it is, only check and enable xlsx report click on generate zip file should be downloaded.",
+    "answers": [
+      {
+        "text": "go to sonar url login sonar url using below details and other details are given below",
+        "answer_start": 20
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q2",
+    "question": "After opening the Sonar URL, what should you do to create the project?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on create project click project > manually ( give project name, click setup",
+        "answer_start": 106
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q3",
+    "question": "Where will the token be shown during Sonar project setup?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "after setting up token will be shown in screen",
+        "answer_start": 189
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q4",
+    "question": "After creating the project, where should you go to edit the Sonar shell script?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "go to sonar shell script in the workspace open the sh file and replace below things",
+        "answer_start": 236
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q5",
+    "question": "Which Maven command is used to run the Sonar analysis?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "mvn org. sonarsource. scanner. maven : sonar - maven - plugin : 3. 9. 1. 2184 : sonar",
+        "answer_start": 360
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q6",
+    "question": "What is the Sonar project key used in the example?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dsonar. projectkey = psd. japac. csc. fo. ext. api. 25. 1",
+        "answer_start": 450
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q7",
+    "question": "Which property specifies the Sonar host URL in the command?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dsonar. host. url = http://100.76.172.28:19030 ( sonar url )",
+        "answer_start": 512
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q8",
+    "question": "Which property disables ojaudit in the Sonar configuration?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dsonar. ojaudit. enabled = false",
+        "answer_start": 575
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q9",
+    "question": "What value should be used for sonar.login in the shell script?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dsonar. login = sqp_6c5e04a2bf67ba703ff9e81f8a8f3402a39851f1 ( this token will be generated after setting up project )",
+        "answer_start": 612
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q10",
+    "question": "Which property is used to skip tests during the Maven build?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dmaven. test. skip = true",
+        "answer_start": 733
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q11",
+    "question": "Which property sets the local Maven repository path in the example?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dmaven. repo. local = /scratch/build/m2/repository/orm_maven_repo_v1/repository",
+        "answer_start": 763
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q12",
+    "question": "After configuring the shell script, how should you run it?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "run sh file in putty build should be successful",
+        "answer_start": 849
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q13",
+    "question": "What should you check on the Sonar dashboard after running the build?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "check sonar dashboard for respective project the date should be updated for code coverage",
+        "answer_start": 897
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q14",
+    "question": "How do you start downloading the Sonar report from the UI?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "to download the report, click on more at the top bar",
+        "answer_start": 987
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q15",
+    "question": "Which report type should be enabled to get the XLSX file?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on cnes report > select the project > all other options will be as it is, only check and enable xlsx report",
+        "answer_start": 1040
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q16",
+    "question": "What happens after you click on Generate in the CNES report screen?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on generate zip file should be downloaded",
+        "answer_start": 1154
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q17",
+    "question": "Which workspace file must be edited during Sonar setup?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "open the sh file and replace below things has to be replaced",
+        "answer_start": 263
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q18",
+    "question": "What plugin version is specified for the Sonar Maven plugin?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "sonar - maven - plugin : 3. 9. 1. 2184",
+        "answer_start": 400
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q19",
+    "question": "What should you do after generating the token?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "after setting up token will be shown in screen go to sonar shell script in the workspace",
+        "answer_start": 189
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q20",
+    "question": "Which command ensures tests are skipped during build?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "dmaven. test. skip = true",
+        "answer_start": 733
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q21",
+    "question": "Where do you verify code coverage results?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "check sonar dashboard for respective project the date should be updated for code coverage",
+        "answer_start": 897
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q22",
+    "question": "Which UI option lets you download the CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on cnes report > select the project",
+        "answer_start": 1040
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q23",
+    "question": "What should you select after clicking on CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "select the project > all other options will be as it is",
+        "answer_start": 1063
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q24",
+    "question": "Which option must be enabled to generate the XLSX report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "only check and enable xlsx report",
+        "answer_start": 1120
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q25",
+    "question": "After enabling XLSX report, what action should you take?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on generate zip file should be downloaded",
+        "answer_start": 1154
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q26",
+    "question": "What file is downloaded after generating the CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "zip file should be downloaded",
+        "answer_start": 1172
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q27",
+    "question": "Where do you find the option to generate the CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on more at the top bar click on cnes report",
+        "answer_start": 1010
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q28",
+    "question": "What remains unchanged when generating the CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "all other options will be as it is",
+        "answer_start": 1084
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q29",
+    "question": "Which report menu provides the XLSX export option?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on cnes report > select the project > all other options will be as it is, only check and enable xlsx report",
+        "answer_start": 1040
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q30",
+    "question": "What is the final verification step after downloading the CNES report?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "zip file should be downloaded",
+        "answer_start": 1172
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q31",
+    "question": "What is the IP address of the Sonar server?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "100.76.172.28:19030",
+        "answer_start": 539
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q32",
+    "question": "What port is the Sonar server running on?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "19030 ( sonar url )",
+        "answer_start": 553
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q33",
+    "question": "What tool should be used to run the shell file?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "run sh file in putty",
+        "answer_start": 849
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q34",
+    "question": "What is the full path to the local Maven repository?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "/scratch/build/m2/repository/orm_maven_repo_v1/repository",
+        "answer_start": 785
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q35",
+    "question": "What specific metric should be updated with the date on the dashboard?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "the date should be updated for code coverage",
+        "answer_start": 941
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q36",
+    "question": "What is the full version of the sonar maven plugin?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "3. 9. 1. 2184",
+        "answer_start": 424
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q37",
+    "question": "What is the value of the generated login token?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "sqp_6c5e04a2bf67ba703ff9e81f8a8f3402a39851f1",
+        "answer_start": 628
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q38",
+    "question": "What option should be selected from the 'more' menu?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "click on cnes report",
+        "answer_start": 1040
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q39",
+    "question": "What type of report file is enabled?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "only check and enable xlsx report",
+        "answer_start": 1120
+      }
+    ]
+  },
+  {
+    "id": "extapi_sonar_q40",
+    "question": "What needs to be checked if the build is successful?",
+    "context": "...",
+    "answers": [
+      {
+        "text": "check sonar dashboard for respective project",
+        "answer_start": 897
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q1",
+    "question": "What are the first two things to setup for the SO 25.3 Local environment?",
+    "context": "Local Setup Guide 1. Setup Podman and wsl-vpn-kit. (Refer to “WSL and Podman Setup for Spingboot with OracleDB ENV.docx”) 2. Setup podman compose (Check the embedded document)",
+    "answers": [{ "text": "Setup Podman and wsl-vpn-kit", "answer_start": 19 }]
+  },
+  {
+    "id": "so253_local_q2",
+    "question": "Where can you search for available images in the Artifact Repository?",
+    "context": "Login to Artifact Repository with SSO credentials. You can search “finergy-jpac-csc-bnpp” in search box for all the available images and paths.",
+    "answers": [{ "text": "search “finergy-jpac-csc-bnpp” in search box", "answer_start": 50 }]
+  },
+  {
+    "id": "so253_local_q3",
+    "question": "What is the purpose of generating an Access Token?",
+    "context": "Now we will be generating an Access Token, which will be used to pull & push images.",
+    "answers": [{ "text": "used to pull & push images", "answer_start": 61 }]
+  },
+  {
+    "id": "so253_local_q4",
+    "question": "How do you navigate to the token generation screen in the Artifact Repository?",
+    "context": "6. Click on profile dropdown and click on Edit Profile. 7. Click on “Generate an Identity Token”",
+    "answers": [{ "text": "Click on profile dropdown and click on Edit Profile", "answer_start": 3 }]
+  },
+  {
+    "id": "so253_local_q5",
+    "question": "What command checks if the podman machine is running?",
+    "context": "Check if your podman machine is running or not by doing “wsl -l -v”.",
+    "answers": [{ "text": "wsl -l -v", "answer_start": 54 }]
+  },
+  {
+    "id": "so253_local_q6",
+    "question": "What command is used to start the podman machine?",
+    "context": "Start podman machine by doing “podman machine start”",
+    "answers": [{ "text": "podman machine start", "answer_start": 30 }]
+  },
+  {
+    "id": "so253_local_q7",
+    "question": "What is the command to start the wsl-vpn-kit?",
+    "context": "start wsl-vpn-kit by doing “wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit”",
+    "answers": [{ "text": "wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit", "answer_start": 28 }]
+  },
+  {
+    "id": "so253_local_q8",
+    "question": "What status must the VPN be in to login to the artifact repo via terminal?",
+    "context": "Now we will be login to artifact repo from terminal. (Make sure VPN is turned on)",
+    "answers": [{ "text": "VPN is turned on", "answer_start": 61 }]
+  },
+  {
+    "id": "so253_local_q9",
+    "question": "What should be provided as the password during 'podman login'?",
+    "context": "16. Provide the access token we copied for password and hit enter.",
+    "answers": [{ "text": "access token", "answer_start": 16 }]
+  },
+  {
+    "id": "so253_local_q10",
+    "question": "Which specific Maven image needs to be pulled?",
+    "context": "Maven Image podman pull finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com/base-images/maven3.9.1-jdk21.0.7:1.0.0",
+    "answers": [{ "text": "maven3.9.1-jdk21.0.7:1.0.0", "answer_start": 91 }]
+  },
+  {
+    "id": "so253_local_q11",
+    "question": "Which images require the Cisco VPN to be disconnected before pulling?",
+    "context": "After this we will disconnect the Cisco VPN and pull these images. - Nginx podman pull nginx:alpine - Node podman pull node:18.17.1-alpine - Kong podman pull kong:3.9",
+    "answers": [{ "text": "Nginx, Node, Kong", "answer_start": 62 }]
+  },
+  {
+    "id": "so253_local_q12",
+    "question": "Where should the 'SO_25.3_Containers_required_file_changes' folder be placed?",
+    "context": "Extract the folder, copy the folder, and place it in your C:\\ drive.",
+    "answers": [{ "text": "C:\\ drive", "answer_start": 54 }]
+  },
+  {
+    "id": "so253_local_q13",
+    "question": "What are the two options for running applications after file extraction?",
+    "context": "Now you have 2 options either containerize the applications and run them in podman or run them locally in STS or Eclipse.",
+    "answers": [{ "text": "containerize the applications and run them in podman or run them locally", "answer_start": 30 }]
+  },
+  {
+    "id": "so253_local_q14",
+    "question": "When should you NOT replace the files under the source_code folder?",
+    "context": "If you want to containerize the application then do not replace the files present under SO_25.3_containerization_required_file_changes/ source_code",
+    "answers": [{ "text": "If you want to containerize the application", "answer_start": 0 }]
+  },
+  {
+    "id": "so253_local_q15",
+    "question": "What command builds the Kong API image?",
+    "context": "Go to bnpp_csc_so/kongapi and run this command. “podman build -t cscso-kong .”",
+    "answers": [{ "text": "podman build -t cscso-kong .", "answer_start": 51 }]
+  },
+  {
+    "id": "so253_local_q16",
+    "question": "Should the VPN be connected or disconnected when building Spring Boot images?",
+    "context": "Now we will build all the spring boot micro services images. (Make sure VPN is turned disconnected)",
+    "answers": [{ "text": "disconnected", "answer_start": 82 }]
+  },
+  {
+    "id": "so253_local_q17",
+    "question": "What does the '.' represent in the podman build command?",
+    "context": "The “ . ” at the end of build command is necessary as it represents the current directory where the Dockerfile is located.",
+    "answers": [{ "text": "current directory where the Dockerfile is located", "answer_start": 72 }]
+  },
+  {
+    "id": "so253_local_q18",
+    "question": "List three spring boot services that need to be built.",
+    "context": "cscso-login-service - cscso-outbound-service - cscso-reports-service",
+    "answers": [{ "text": "cscso-login-service, cscso-outbound-service, cscso-reports-service", "answer_start": 0 }]
+  },
+  {
+    "id": "so253_local_q19",
+    "question": "In which directory do you run the build command for the angular service?",
+    "context": "Go to bnpp_csc_so/cscso-web/src/marketingapp and run -> “podman build -t cscso-web .”",
+    "answers": [{ "text": "bnpp_csc_so/cscso-web/src/marketingapp", "answer_start": 6 }]
+  },
+  {
+    "id": "so253_local_q20",
+    "question": "How do you remove dangling images from podman?",
+    "context": "Run this command to remove all the dangling images (<none> type images). “podman rmi -f $(podman images --filter \"dangling=true\" -q)”",
+    "answers": [{ "text": "podman rmi -f $(podman images --filter \"dangling=true\" -q)", "answer_start": 62 }]
+  },
+  {
+    "id": "so253_local_q21",
+    "question": "Which properties need updating in the docker-compose.yaml?",
+    "context": "Update the properties in docker-compose.yaml DB_URL, DB_USERNAME, DB_PASSWORD.",
+    "answers": [{ "text": "DB_URL, DB_USERNAME, DB_PASSWORD", "answer_start": 41 }]
+  },
+  {
+    "id": "so253_local_q22",
+    "question": "What command starts all the containerized services?",
+    "context": "Run “podman compose -p cscsoapp up”",
+    "answers": [{ "text": "podman compose -p cscsoapp up", "answer_start": 5 }]
+  },
+  {
+    "id": "so253_local_q23",
+    "question": "How can you visually verify that services are running in Podman Desktop?",
+    "context": "if you open your podman desktop and go to containers section, you can see all services in green",
+    "answers": [{ "text": "go to containers section, you can see all services in green", "answer_start": 39 }]
+  },
+  {
+    "id": "so253_local_q24",
+    "question": "What is the login URL for 25.3 ST?",
+    "context": "Login to 25.3 ST. https://ofss-mum-4923.snbomprshared2.gbucdsint02bom.oraclevcn.com:7443/cscapp/#/cscapp/login",
+    "answers": [{ "text": "https://ofss-mum-4923.snbomprshared2.gbucdsint02bom.oraclevcn.com:7443/cscapp/#/cscapp/login", "answer_start": 16 }]
+  },
+  {
+    "id": "so253_local_q25",
+    "question": "What checkbox should be enabled in the Network Tab during login?",
+    "context": "Open Network Tab and check the “preserve log” checkbox.",
+    "answers": [{ "text": "preserve log", "answer_start": 31 }]
+  },
+  {
+    "id": "so253_local_q26",
+    "question": "Which specific network call should you inspect after clicking Supplier Onboarding?",
+    "context": "Check the Network Tab for index.jsp call",
+    "answers": [{ "text": "index.jsp", "answer_start": 27 }]
+  },
+  {
+    "id": "so253_local_q27",
+    "question": "What base URL should you use to replace the IP and Port for containerized access?",
+    "context": "replace the base URL which is IP and Port with “localhost:8443”",
+    "answers": [{ "text": "localhost:8443", "answer_start": 54 }]
+  },
+  {
+    "id": "so253_local_q28",
+    "question": "What is the shortcut purpose of using the localhost:8443 URL?",
+    "context": "the above steps are a shortcut to avoid setting up CSC_LOGIN APP and OLD_UX APP locally.",
+    "answers": [{ "text": "avoid setting up CSC_LOGIN APP and OLD_UX APP locally", "answer_start": 40 }]
+  },
+  {
+    "id": "so253_local_q29",
+    "question": "What files are included in the 'required file changes' for local Eclipse setup?",
+    "context": "Those contains changes in application.properties for all services, jks files, access tokens and app.service.ts and app.module.ts file changes.",
+    "answers": [{ "text": "application.properties, jks files, access tokens, app.service.ts and app.module.ts", "answer_start": 27 }]
+  },
+  {
+    "id": "so253_local_q30",
+    "question": "What Maven action should be performed after updating DB details?",
+    "context": "Update the DB details and so access tokens paths in application.properties if required and do Maven Update Force",
+    "answers": [{ "text": "Maven Update Force", "answer_start": 94 }]
+  },
+  {
+    "id": "so253_local_q31",
+    "question": "What command installs dependencies for the frontend in VS Code?",
+    "context": "Go to bnpp_csc_so/cscso-web/src/marketingapp... do “npm i -f”",
+    "answers": [{ "text": "npm i -f", "answer_start": 50 }]
+  },
+  {
+    "id": "so253_local_q32",
+    "question": "How do you start the backend microservices in Eclipse?",
+    "context": "For backend Right Click> Run As> Spring Boot App",
+    "answers": [{ "text": "Right Click> Run As> Spring Boot App", "answer_start": 12 }]
+  },
+  {
+    "id": "so253_local_q33",
+    "question": "What is the command to start the frontend service locally?",
+    "context": "For frontend ng serve",
+    "answers": [{ "text": "ng serve", "answer_start": 13 }]
+  },
+  {
+    "id": "so253_local_q34",
+    "question": "What is the local access URL for the frontend service?",
+    "context": "Access it on http://localhost:4200",
+    "answers": [{ "text": "http://localhost:4200", "answer_start": 13 }]
+  },
+  {
+    "id": "so253_local_q35",
+    "question": "What must you do before switching back from local running to containerization?",
+    "context": "Whenever you want to containerize the application locally... make sure you revert the required file changes",
+    "answers": [{ "text": "revert the required file changes", "answer_start": 78 }]
+  },
+  {
+    "id": "so253_local_q36",
+    "question": "Should VPN be connected when doing Maven Update Force?",
+    "context": "do Maven Update Force with VPN turned off.",
+    "answers": [{ "text": "VPN turned off", "answer_start": 30 }]
+  },
+  {
+    "id": "so253_local_q37",
+    "question": "Which artifact hub path is used to search for 'finergy-jpac-csc-bnpp'?",
+    "context": "https://artifacthub-iad.oci.oraclecorp.com/ui/repos/tree/General/finergy-jpac-csc-bnpp",
+    "answers": [{ "text": "https://artifacthub-iad.oci.oraclecorp.com/ui/repos/tree/General/finergy-jpac-csc-bnpp", "answer_start": 30 }]
+  },
+  {
+    "id": "so253_local_q38",
+    "question": "How long does it typically take to build the angular image?",
+    "context": "It will take some time to build the angular image.",
+    "answers": [{ "text": "take some time", "answer_start": 8 }]
+  },
+  {
+    "id": "so253_local_q39",
+    "question": "Where do you locate the docker-compose.yaml file?",
+    "context": "Go to bnpp_csc_so/docker-compose",
+    "answers": [{ "text": "bnpp_csc_so/docker-compose", "answer_start": 6 }]
+  },
+  {
+    "id": "so253_local_q40",
+    "question": "What happens if you close the terminal window where wsl-vpn-kit is running?",
+    "context": "Keep the window or tab open, DO NOT CLOSE IT or stop the process.",
+    "answers": [{ "text": "stop the process", "answer_start": 51 }]
+  },
+  {
+    "id": "so253_local_q41",
+    "question": "What is the specific podman command to pull the Maven 3.9.1 JDK 21 image?",
+    "context": "Maven Image podman pull finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com/base-images/maven3.9.1-jdk21.0.7:1.0.0",
+    "answers": [
+      {
+        "text": "podman pull finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com/base-images/maven3.9.1-jdk21.0.7:1.0.0",
+        "answer_start": 12
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q42",
+    "question": "Which image should be pulled for the Oracle JDK version 21.0.7?",
+    "context": "- Oracle JDK Image podman pull finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com/base-images/container-registry.oracle.com/java/jdk:21.0.7",
+    "answers": [
+      {
+        "text": "finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com/base-images/container-registry.oracle.com/java/jdk:21.0.7",
+        "answer_start": 31
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q43",
+    "question": "What action must be taken regarding the Cisco VPN before pulling Nginx, Node, and Kong images?",
+    "context": "18. After this we will disconnect the Cisco VPN and pull these images. - Nginx podman pull nginx:alpine - Node podman pull node:18.17.1-alpine - Kong podman pull kong:3.9",
+    "answers": [
+      {
+        "text": "disconnect the Cisco VPN",
+        "answer_start": 24
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q44",
+    "question": "Which specific version of the Nginx image is required for the local setup?",
+    "context": "- Nginx podman pull nginx:alpine",
+    "answers": [
+      {
+        "text": "nginx:alpine",
+        "answer_start": 21
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q45",
+    "question": "What is the command to pull the required Node.js version?",
+    "context": "- Node podman pull node:18.17.1-alpine",
+    "answers": [
+      {
+        "text": "podman pull node:18.17.1-alpine",
+        "answer_start": 8
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q46",
+    "question": "Which version of the Kong image should be pulled after disconnecting the VPN?",
+    "context": "- Kong podman pull kong:3.9",
+    "answers": [
+      {
+        "text": "kong:3.9",
+        "answer_start": 20
+      }
+    ]
+  },
+  {
+    "id": "so253_local_q47",
+    "question": "Why are some images pulled while the VPN is connected and others while it is disconnected?",
+    "context": "Maven Image podman pull finergy-jpac-csc-bnpp.dockerhub-iad.oci.oraclecorp.com... After this we will disconnect the Cisco VPN and pull these images. - Nginx podman pull nginx:alpine",
+    "answers": [
+      {
+        "text": "finergy-jpac-csc-bnpp images require internal repository access (VPN), while Nginx/Node/Kong are from public registries",
+        "answer_start": -1
+      }
+    ]
+  }
+]
