@@ -11,12 +11,12 @@ from openai import OpenAI
 CHUNKS_DIR = Path("data/chunks")
 OUTPUT_FILE = Path("domain_data_flat.json")
 
-QUESTIONS_PER_CHUNK = 20      # change to 15 if needed
+QUESTIONS_PER_CHUNK = 20        # total per chunk
 MAX_QAS_PER_CALL = 8
 MAX_CALLS_PER_CHUNK = 4
 
 MODEL_NAME = "qwen/qwen-2.5-7b-instruct"
-# Alternative:
+# Alternative (stricter JSON, higher cost):
 # MODEL_NAME = "deepseek/deepseek-chat"
 
 client = OpenAI(
@@ -81,11 +81,20 @@ Context:
 TASK:
 Generate up to {remaining} DISTINCT question-answer pairs.
 
-STRICT RULES:
-- Questions must be answerable ONLY from the context
-- Answers must be exact substrings from the context
+IMPORTANT ANSWER MIX (MUST FOLLOW):
+- ~40% SHORT answers (1–5 words, factual values like tokens, flags, URLs)
+- ~30% MEDIUM answers (one complete sentence)
+- ~30% LONG answers (MULTI-SENTENCE or step-style explanations)
+
+STRICT RULES (CRITICAL):
+- ALL answers MUST be exact substrings copied verbatim from the context
+- Long answers MUST span multiple sentences if available in the context
+- Prefer procedural steps, grouped instructions, or explanations already present
+- DO NOT paraphrase
+- DO NOT summarize
+- DO NOT invent text
 - Each answer MUST include answer_start
-- No explanations
+- No explanations outside JSON
 - No markdown
 - Output ONLY valid JSON ARRAY
 
@@ -101,6 +110,10 @@ OUTPUT FORMAT:
     ]
   }}
 ]
+
+FINAL CHECK BEFORE OUTPUT:
+- Verify every answer appears verbatim in the context
+- Ensure long answers are clearly longer than short answers
 """.strip()
 
 
@@ -160,7 +173,7 @@ def generate_questions_for_chunk(chunk, existing_qas):
                 "answers": answers
             })
 
-            # 🔥 LIVE COUNTER UPDATE
+            # 🔥 LIVE COUNTER
             sys.stdout.write(
                 f"\r🧠 {chunk['chunk_id']} → {len(collected)}/{total}"
             )
@@ -168,7 +181,7 @@ def generate_questions_for_chunk(chunk, existing_qas):
 
         time.sleep(SLEEP_BETWEEN_CALLS)
 
-    print()  # newline after finishing chunk
+    print()  # newline after chunk finishes
     return collected
 
 
@@ -200,7 +213,7 @@ def main():
 
         updated_qas = generate_questions_for_chunk(chunk, existing_for_chunk)
 
-        # Remove old entries for this chunk
+        # Remove old QAs for this chunk
         new_dataset = [
             qa for qa in new_dataset if qa["chunk_id"] != chunk_id
         ]

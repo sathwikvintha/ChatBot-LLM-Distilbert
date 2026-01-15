@@ -145,8 +145,13 @@ def qwen_generate_answer(question, chunks):
     answer = qwen2_answer(
         context=context_text,
         question=(
-            f"Answer the following question using ONLY the information above. "
-            f"If the answer is not present, respond exactly: 'I could not find an answer in the documents.'\n\n"
+            f"Answer the following question using ONLY the information above.\n"
+            f"Explain the answer clearly in your own words, using a concise but helpful tone.\n"
+            f"If the question asks for steps, provide them in a logical step-by-step manner.\n"
+            f"Do NOT add any information that is not explicitly present in the context.\n"
+            f"Do NOT assume or invent details.\n"
+            f"If the answer is not present, respond exactly: "
+            f"'I could not find an answer in the documents.'\n\n"
             f"Question: {question}"
         )
     )
