@@ -1,8 +1,15 @@
 fastapi
 uvicorn
+pydantic
+
 torch
 transformers
 sentence-transformers
-faiss-cpu
 datasets
-PyPDF2
+faiss-cpu
+numpy
+
+openai
+
+pdfplumber
+python-docx
