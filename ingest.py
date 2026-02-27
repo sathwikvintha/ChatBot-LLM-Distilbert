@@ -13,6 +13,8 @@ import docx
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+import pandas as pd
+from pptx import Presentation
 
 # -----------------------------
 # Setup logging
@@ -96,14 +98,47 @@ def extract_docx_text(path: Path) -> str:
     text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
     return clean_trash(text)
 
+def extract_excel_text(path: Path) -> str:
+    text_blocks = []
+    excel_data = pd.read_excel(path, sheet_name=None)
+
+    for sheet_name, df in excel_data.items():
+        text_blocks.append(f"\nSheet: {sheet_name}")
+        df = df.fillna("")  # remove NaNs
+        text_blocks.append(df.astype(str).to_string(index=False))
+
+    return clean_trash("\n".join(text_blocks))
+
+def extract_ppt_text(path: Path) -> str:
+    prs = Presentation(path)
+    slides_text = []
+
+    for i, slide in enumerate(prs.slides):
+        slides_text.append(f"\nSlide {i + 1}")
+        for shape in slide.shapes:
+            if hasattr(shape, "text") and shape.text.strip():
+                slides_text.append(shape.text.strip())
+
+    return clean_trash("\n".join(slides_text))
+
 def extract_text(path: Path) -> str:
     suffix = path.suffix.lower()
+
     if suffix == ".pdf":
         return extract_pdf_text(path)
+
     elif suffix == ".docx":
         return extract_docx_text(path)
+
     elif suffix in [".txt", ".md"]:
         return clean_trash(path.read_text(encoding="utf-8", errors="ignore"))
+
+    elif suffix in [".xlsx", ".xls"]:
+        return extract_excel_text(path)
+
+    elif suffix == ".pptx":
+        return extract_ppt_text(path)
+
     else:
         raise ValueError(f"Unsupported file type: {path}")
 
