@@ -1,4 +1,5 @@
 # Import standard libraries
+from http import client
 import os
 import json
 import logging
@@ -6,15 +7,19 @@ import time
 from pathlib import Path
 from typing import List, Dict
 import re
-
-# Import third-party libraries
 import pdfplumber
 import docx
 from sentence_transformers import SentenceTransformer
-import faiss
 import numpy as np
 import pandas as pd
 from pptx import Presentation
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams, PointStruct
+import hashlib
+import uuid
+from qdrant_client.models import Filter, FieldCondition, MatchValue
+
+from config import QDRANT_PATH, COLLECTION_NAME
 
 # -----------------------------
 # Setup logging
@@ -35,9 +40,8 @@ SOURCE_DIR = Path("data/source")
 PROCESSED_DIR = Path("data/processed")
 CHUNKS_DIR = Path("data/chunks")
 EMBEDDINGS_DIR = Path("data/embeddings")
-INDEX_DIR = Path("data/index")
 
-for d in [PROCESSED_DIR, CHUNKS_DIR, EMBEDDINGS_DIR, INDEX_DIR]:
+for d in [PROCESSED_DIR, CHUNKS_DIR, EMBEDDINGS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # -----------------------------
@@ -211,9 +215,12 @@ def build_chunks(path: Path, text: str) -> List[Dict]:
         {
             "chunk_id": f"{path.stem}_{i}",
             "source_path": str(path),
+            "file_name": path.name,
             "doc_type": path.suffix.lower(),
+            "file_size_kb": round(path.stat().st_size / 1024, 2),
+            "indexed_at": time.time(),
             "text": chunk,
-            "has_ocr": False  # no OCR anymore
+            "has_ocr": False
         }
         for i, chunk in enumerate(raw_chunks)
     ]
@@ -233,26 +240,70 @@ def embed_chunks(chunks: List[Dict]) -> np.ndarray:
 
 def save_embeddings(path: Path, embeddings: np.ndarray):
     np.save(EMBEDDINGS_DIR / f"{path.stem}.npy", embeddings)
+HASH_STORE = Path("data/file_hashes.json")
 
-def build_index(all_chunks: List[Dict], all_embeddings: np.ndarray):
-    if len(all_embeddings) == 0:
-        logging.error("No embeddings generated. Nothing to index.")
-        return
-    dim = all_embeddings.shape[1]
-    index = faiss.IndexFlatL2(dim)
-    index.add(all_embeddings)
-    faiss.write_index(index, str(INDEX_DIR / "faiss.index"))
-    (INDEX_DIR / "meta.json").write_text(json.dumps(all_chunks, indent=2), encoding="utf-8")
+def compute_file_hash(path: Path) -> str:
+    hash_md5 = hashlib.md5()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
 
+def load_hash_store():
+    if HASH_STORE.exists():
+        return json.loads(HASH_STORE.read_text())
+    return {}
+
+def save_hash_store(hash_data):
+    HASH_STORE.write_text(json.dumps(hash_data, indent=2))
+    
 # -----------------------------
 # Main ingestion pipeline
 # -----------------------------
 def ingest():
-    all_chunks, all_embeddings = [], []
-    for file in SOURCE_DIR.iterdir():
+    client = QdrantClient(path=QDRANT_PATH)
+    collection_name = COLLECTION_NAME  
+
+    if collection_name not in [c.name for c in client.get_collections().collections]:
+        dim = embedder.get_sentence_embedding_dimension()
+        client.create_collection(
+            collection_name=collection_name,
+            vectors_config=VectorParams(
+                size=dim,
+                distance=Distance.COSINE
+            ),
+        )
+    hash_store = load_hash_store()  
+    BATCH_SIZE = 500
+    points_batch = []
+    SUPPORTED_TYPES = {".pdf", ".docx", ".txt", ".md", ".xlsx", ".xls", ".pptx"}
+    
+    for file in SOURCE_DIR.iterdir():  
         if not file.is_file():
             continue
+        if file.suffix.lower() not in SUPPORTED_TYPES:
+            logging.warning(f"Skipping unsupported file: {file.name}")
+            continue
+        file_hash = compute_file_hash(file)
+        if file.name in hash_store and hash_store[file.name] == file_hash:
+            logging.info(f"Skipping already indexed file: {file.name}")
+            continue
+        if file.name in hash_store and hash_store[file.name] != file_hash:
+            logging.info(f"File changed. Deleting old vectors for {file.name}")
+
+            client.delete(
+                collection_name=collection_name,
+                points_selector=Filter(
+                must=[
+                    FieldCondition(
+                        key="file_name",
+                        match=MatchValue(value=file.name)
+                    )
+                ]
+            )
+        )
         t0 = time.time()
+
         try:
             logging.info(f"Processing {file.name}...")
             raw_text = extract_text(file)
@@ -261,20 +312,42 @@ def ingest():
             save_processed(file, clean_text)
             chunks = build_chunks(file, clean_text)
             save_chunks(file, chunks)
-            all_chunks.extend(chunks)
             embeddings = embed_chunks(chunks)
-            save_embeddings(file, embeddings)
-            all_embeddings.extend(embeddings)
-            logging.info(f"{file.name}: {len(chunks)} chunks created in {time.time() - t0:.2f}s")
+
+            for chunk, embedding in zip(chunks, embeddings):
+                points_batch.append(
+                    PointStruct(
+                        id=str(uuid.uuid4()),
+                        vector=embedding.tolist(),
+                        payload=chunk
+                    )
+                )
+                # Upload batch when size reached
+                if len(points_batch) >= BATCH_SIZE:
+                    client.upsert(
+                        collection_name=collection_name,
+                        points=points_batch
+                    )
+                    logging.info(f"Uploaded {len(points_batch)} vectors")
+                    points_batch = []
+            logging.info(
+                f"{file.name}: {len(chunks)} chunks processed "
+                f"in {time.time() - t0:.2f}s"
+            )
+            hash_store[file.name] = file_hash
+            save_hash_store(hash_store)
         except Exception as e:
             logging.error(f"Failed to process {file.name}: {e}")
             continue
-    if len(all_embeddings) == 0:
-        logging.error("No embeddings generated. Skipping index build.")
-        return
-    all_embeddings = np.array(all_embeddings)
-    build_index(all_chunks, all_embeddings)
-    logging.info("Ingestion complete. Index and chunks rebuilt.")
+
+    # Upload remaining points
+    if points_batch:
+        client.upsert(
+            collection_name=collection_name,
+            points=points_batch
+        )
+        logging.info(f"Uploaded final {len(points_batch)} vectors")
+    logging.info("Ingestion complete. Qdrant index ready.")
 
 if __name__ == "__main__":
     ingest()
